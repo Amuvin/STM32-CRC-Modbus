@@ -32,4 +32,3 @@
 .\objects\main.o: .\Hardware\Serial.h
 .\objects\main.o: D:\Keil5 MDK\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\main.o: D:\Keil5 MDK\ARM\ARMCC\Bin\..\include\stdarg.h
-.\objects\main.o: .\Hardware\Key.h
