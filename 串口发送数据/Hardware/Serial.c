@@ -187,7 +187,23 @@ void Serial_Send_Cmd_Data(uint8_t cmd,const uint8_t *datas,uint8_t len)
 }
 
 /**
-  * 函    数：串口发送数据分析
+  * 函    数：发送结构体
+  * 参    数：cmd 命令
+  * 参    数：data 指向要发送的DataStruct结构体的指针
+  * 返 回 值：无
+  * 注意事项：此函数会将结构体格式化为字符串，并打包成数据帧发送
+  */
+void Serial_SendStructData(uint8_t cmd, DataStruct *data)
+{
+	uint8_t buffer[300];
+	int len = snprintf((char *)buffer, sizeof(buffer), "keyNum:%d,floatData:%4.2f,intData:%d",
+					  data->keyNum, data->floatData, data->intData);
+
+	Serial_Send_Cmd_Data(cmd, buffer, len); // 使用指定命令字发送数据帧
+}
+
+/**
+  * 函    数：根据命令解析函数
   * 参    数：cmd 命令字节
   * 参    数：datas 数据数组首地址
   * 参    数：len 总字节长度

@@ -5,14 +5,16 @@
 #include <stdio.h>
 #include <stdarg.h>
 
+// 定义一个结构体来存储数据
+typedef struct {
+    uint8_t keyNum;     // 按键键码
+    float floatData;    // 浮点数数据
+    int intData;        // 整数数据
+} DataStruct;
+
 void Serial_Init(void);
-void Serial_SendByte(uint8_t Byte);
-void Serial_SendArray(uint8_t *Array, uint16_t Length);
-void Serial_SendString(char *String);
 void Serial_Printf(char *format, ...);
 
-uint16_t Serial_CRC16_Check(const uint8_t *data,uint8_t len);
-void Serial_Send_Cmd_Data(uint8_t cmd,const uint8_t *datas,uint8_t len);
-void Serial_DataAnalysis(uint8_t cmd,const uint8_t *datas,uint8_t len);
+void Serial_SendStructData(uint8_t cmd, DataStruct *data);
 
 #endif

@@ -2,15 +2,6 @@
 #include "Delay.h"
 #include "Serial.h"
 
-// 定义一个结构体来存储数据
-typedef struct {
-    uint8_t keyNum;     // 按键键码
-    float floatData;    // 浮点数数据
-    int intData;        // 整数数据
-} DataStruct;
-
-uint8_t buffer[300]; // 定义一个字节数组用于存储数据帧
-
 int main(void)
 {
 	/*模块初始化*/
@@ -25,11 +16,7 @@ int main(void)
 	
 	while (1)
 	{
-		int len = snprintf(buffer, sizeof(buffer), "keyNum:%d,floatData:%3.2f,intData:%d",
-				data.keyNum, data.floatData, data.intData);
-
-        // 发送数据帧
-        Serial_Send_Cmd_Data(0x01, buffer, len); // 使用命令字0x01发送数据帧
+		Serial_SendStructData(0x01, &data); // 发送结构体数据，命令字为0x01
 
         Delay_ms(1000); // 延时1秒
 	}
